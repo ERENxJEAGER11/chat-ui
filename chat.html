@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Screen</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.chat-box {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.chat-message.sent {
+  align-items: flex-end;
+}
+
+.message-text {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+.message-input {
+  display: flex;
+  margin-top: 20px;
+}
+
+.message-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.message-input button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+  </style>
+  <body>
+    <div class="container">
+      <div class="chat-box">
+        <div class="chat-message">
+          <p class="message-text">Hello, how can I assist you?</p>
+        </div>
+        <div class="chat-message sent">
+          <p class="message-text">Hi, I need some help.</p>
+        </div>
+      </div>
+      <form class="message-input">
+        <input type="text" placeholder="Type your message here" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <script>
+    const form = document.querySelector('.message-input');
+const input = document.querySelector('input');
+const chatBox = document.querySelector('.chat-box');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const message = input.value;
+  const chatMessage = `
+    <div class="chat-message sent">
+      <p class="message-text">${message}</p>
+    </div>
+  `;
+  chatBox.innerHTML += chatMessage;
+  input.value = '';
+});
+
+    </script>
+  </body>
+</html>
